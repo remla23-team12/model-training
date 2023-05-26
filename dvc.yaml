@@ -1,0 +1,29 @@
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - src/preprocess.py
+    - training_data/a1_RestaurantReviews_HistoricDump.tsv
+    outs:
+    - bow/bow_sentiment_model.pkl
+    - splitData/x_test.pkl
+    - splitData/x_train.pkl
+    - splitData/y_test.pkl
+    - splitData/y_train.pkl
+  train:
+    cmd: python src/train.py
+    deps:
+    - splitData/x_train.pkl
+    - splitData/y_train.pkl
+    - src/train.py
+    outs:
+    - models/classifier_sentiment_model
+  test:
+    cmd: python src/test.py
+    deps:
+    - models/classifier_sentiment_model
+    - splitData/x_test.pkl
+    - splitData/y_test.pkl
+    - src/test.py
+    metrics:
+    - output/metrics.json
