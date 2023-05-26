@@ -19,4 +19,4 @@ def test_train(var_smoothing):
 
 
 if __name__ == "__main__":
-    test_train(1e-011)
+    test_train(1e-010)
