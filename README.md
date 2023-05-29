@@ -18,3 +18,8 @@ DVC keeps track of machine learning experiments. You can reproduce any experimen
 ```bash
 dvc repro
 ```
+## Pytest
+In /model-training path, run
+```bash
+pytest
+```
