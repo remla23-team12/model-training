@@ -35,17 +35,17 @@ stages:
       md5: 896e15d0f8257c856b3ed9efe1d10e72
       size: 5911
     - path: src/models/train_model.py
-      md5: 60759aaf042f437f87483a4b46d87ebd
-      size: 659
+      md5: c17361b9e0f23db3ba7e321e5e46effc
+      size: 658
     outs:
     - path: models/classifier_sentiment_model
-      md5: e98fa52e2f9b6f601fc411462ae6ad92
+      md5: 2d5a3a7cc92e92406be4edf52dd19be0
       size: 46215
   predict_model:
     cmd: python src/models/predict_model.py
     deps:
     - path: models/classifier_sentiment_model
-      md5: e98fa52e2f9b6f601fc411462ae6ad92
+      md5: 2d5a3a7cc92e92406be4edf52dd19be0
       size: 46215
     - path: output/splitData/x_test.pkl
       md5: dff7bd7ca2acd9aeba2f2ee274f06979
@@ -58,5 +58,5 @@ stages:
       size: 803
     outs:
     - path: output/res/metrics.json
-      md5: 46d3be4b2ce7b07850aeac6a45d86aae
+      md5: cd6f5fb4cb9281088914cac59ba8be5c
       size: 32
