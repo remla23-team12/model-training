@@ -7,12 +7,17 @@ import zipfile
 
 # unfortunately, this does not work, winerror 10054
 def download_data():
-    URL = "https://raw.githubusercontent.com/ltroin/RelmaModelFS/main/a1_RestaurantReviews_HistoricDump.zip"
-    EXTRACT_DIR = "data/raw"
+    """
+    Downloads and extracts the data from the URL.
+    """
+    url = "https://raw.githubusercontent.com/ltroin/RelmaModelFS/main/"
+    url += "a1_RestaurantReviews_HistoricDump.zip"
 
-    zip_path, _ = urllib.request.urlretrieve(URL)
-    with zipfile.ZipFile(zip_path, "r") as f:
-        f.extractall(EXTRACT_DIR)
+    extract_dir = "data/raw"
+
+    zip_path, _ = urllib.request.urlretrieve(url)
+    with zipfile.ZipFile(zip_path, "r") as file:
+        file.extractall(extract_dir)
 
 
 if __name__ == "__main__":

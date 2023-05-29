@@ -18,12 +18,29 @@ DVC keeps track of machine learning experiments. You can reproduce any experimen
 ```bash
 dvc repro
 ```
+## Metrics
+You can view metrics difference between latest commit and after some changes using the following command:
+```bash
+dvc exp run
+```
+change something and git add -A, git commit -m "change something"
+```bash
+dvc exp run
+```
+```bash
+dvc metrics diff
+```
 ## Pytest
 In /model-training path, run
 ```bash
 pytest
 ```
-## cookiecutter info
+## Pylint
+All files have been well documented and reach full score using pylint, verify by :
+```bash
+pylint src/<dir>/<testFile>.py
+```
+## Cookiecutter info
 model-training
 ==============================
 
