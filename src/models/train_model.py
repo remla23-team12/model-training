@@ -5,8 +5,8 @@ import joblib
 
 def train(var_smoothing=1e-09):
     # model-training before the path if running directly, the current path is for dvc
-    x_train = pickle.load(open("splitData/x_train.pkl", "rb"))
-    y_train = pickle.load(open("splitData/y_train.pkl", "rb"))
+    x_train = pickle.load(open("output/splitData/x_train.pkl", "rb"))
+    y_train = pickle.load(open("output/splitData/y_train.pkl", "rb"))
     classifier = GaussianNB(var_smoothing=var_smoothing)
     classifier.fit(x_train, y_train)
 

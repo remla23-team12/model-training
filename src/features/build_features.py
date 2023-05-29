@@ -18,7 +18,7 @@ all_stopwords.remove("not")
 
 def preprocess_data(filename):
     # note: if you run the file directly, you need to have model-training before the path
-    filepath = f"training_data/{filename}"
+    filepath = f"data/raw/{filename}"
     if not os.path.exists(filepath):
         print(filename + " does not exist")
         return
@@ -37,16 +37,16 @@ def preprocess_data(filename):
     ).toarray()
     y = dataset.iloc[:, -1].values
 
-    bow_path = "bow/bow_sentiment_model.pkl"
+    bow_path = "output/bow/bow_sentiment_model.pkl"
     pickle.dump(cv, open(bow_path, "wb"))
 
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, test_size=0.20, random_state=0
     )
-    pickle.dump(x_train, open("splitData/x_train.pkl", "wb"))
-    pickle.dump(x_test, open("splitData/x_test.pkl", "wb"))
-    pickle.dump(y_train, open("splitData/y_train.pkl", "wb"))
-    pickle.dump(y_test, open("splitData/y_test.pkl", "wb"))
+    pickle.dump(x_train, open("output/splitData/x_train.pkl", "wb"))
+    pickle.dump(x_test, open("output/splitData/x_test.pkl", "wb"))
+    pickle.dump(y_train, open("output/splitData/y_train.pkl", "wb"))
+    pickle.dump(y_test, open("output/splitData/y_test.pkl", "wb"))
     return x_train, x_test, y_train, y_test
 
 
