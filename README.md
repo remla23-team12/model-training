@@ -38,7 +38,7 @@ pytest
 ## Pylint
 All files have been well documented and reach full score using pylint, verify by :
 ```bash
-pylint src/<dir>/<testFile>.py
+pylint --load-plugins=dslinter src/<dir>/<testFile>.py
 ```
 ## Cookiecutter info
 model-training
