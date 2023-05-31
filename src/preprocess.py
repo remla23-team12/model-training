@@ -16,7 +16,7 @@ all_stopwords = stopwords.words("english")
 all_stopwords.remove("not")
 
 
-def preprocess_data(filename):
+def preprocess_data(filename, random_state=None):
     # note: if you run the file directly, you need to have model-training before the path
     filepath = f"training_data/{filename}"
     if not os.path.exists(filepath):
@@ -41,12 +41,14 @@ def preprocess_data(filename):
     pickle.dump(cv, open(bow_path, "wb"))
 
     x_train, x_test, y_train, y_test = train_test_split(
-        x, y, test_size=0.20, random_state=0
+        x, y, test_size=0.20, random_state=random_state
     )
-    pickle.dump(x_train, open("splitData/x_train.pkl", "wb"))
-    pickle.dump(x_test, open("splitData/x_test.pkl", "wb"))
-    pickle.dump(y_train, open("splitData/y_train.pkl", "wb"))
-    pickle.dump(y_test, open("splitData/y_test.pkl", "wb"))
+    trail = '' if random_state is None else random_state
+    # print()   
+    pickle.dump(x_train, open(f'splitData/x_train{"_"+str(trail)}.pkl', "wb"))
+    pickle.dump(x_test, open(f'splitData/x_test{"_"+str(trail)}.pkl', "wb"))
+    pickle.dump(y_train, open(f'splitData/y_train{"_"+str(trail)}.pkl', "wb"))
+    pickle.dump(y_test, open(f'splitData/y_test{"_"+str(trail)}.pkl', "wb"))
     return x_train, x_test, y_train, y_test
 
 
@@ -59,8 +61,8 @@ def preprocess_review(review):
     return review
 
 
-def test_preprocess(filename="a1_RestaurantReviews_HistoricDump.tsv"):
-    preprocess_data(filename=filename)
+def test_preprocess(filename="a1_RestaurantReviews_HistoricDump.tsv", random_state=None):
+    preprocess_data(filename=filename, random_state=random_state)
 
 
 if __name__ == "__main__":

@@ -9,11 +9,12 @@ def save_metrics(metrics, path):
         json.dump(metrics, f)
 
 
-def test():
+def test(random_state=None):
     # model-training before the path if running directly, the current path is for dvc
-    x_test = pickle.load(open("splitData/x_test.pkl", "rb"))
-    y_test = pickle.load(open("splitData/y_test.pkl", "rb"))
-    classifier = joblib.load("models/classifier_sentiment_model")
+    trail = '' if random_state is None else random_state
+    x_test = pickle.load(open(f'splitData/x_test{"_"+str(trail)}.pkl', "rb"))
+    y_test = pickle.load(open(f'splitData/y_test{"_"+str(trail)}.pkl', "rb"))
+    classifier = joblib.load(f'models/classifier_sentiment_model{"_"+str(trail)}')
     y_pred = classifier.predict(x_test)
 
     # Save accuracy to a JSON file
