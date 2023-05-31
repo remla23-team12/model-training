@@ -21,6 +21,9 @@ jobs:
     - name: Run pytest
       run: |
         pytest
-    # - name: Analysing the code with pylint
-    #   run: |
-    #     pylint ./src
+    - name: Analysing the code with pylint
+      run: |
+        pylint ./src
+    - name: Analysing the code with DS Lint
+      run: |
+        pylint --load-plugins=dslinter ./src
