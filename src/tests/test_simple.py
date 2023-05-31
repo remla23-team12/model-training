@@ -37,4 +37,4 @@ def test_nondeterminism_robustness(smoothing1_None_randomstate_score, var_smooth
         accuracy_diff = abs(smoothing1_None_randomstate_score - score42)
         assert (
             accuracy_diff < 0.1
-        ), f"Difference in model accuracy with different seeds is too high: {accuracy_diff}"
+        ), f"Difference in model accuracy with different seeds is too high: {accuracy_diff}, seed: {seed}"
