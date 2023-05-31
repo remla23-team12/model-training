@@ -12,6 +12,7 @@ def var_smoothing1():
 @pytest.fixture()
 def smoothing1_None_randomstate_score(var_smoothing1):
     # var_smoothing1 = 1.1e-09    
+    preprocess.test_preprocess(random_state=None)
     train.test_train(var_smoothing1, None)
     score1 = test.test()
     # baseline score
