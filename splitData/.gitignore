@@ -1,4 +1,5 @@
-/x_train.pkl
-/x_test.pkl
-/y_train.pkl
-/y_test.pkl
+*
+# /x_train.pkl
+# /x_test.pkl
+# /y_train.pkl
+# /y_test.pkl
