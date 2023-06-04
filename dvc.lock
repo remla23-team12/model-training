@@ -1,62 +1,62 @@
 schema: '2.0'
 stages:
   preprocess:
-    cmd: python src/preprocess.py
+    cmd: python src/features/build_features.py
     deps:
-    - path: src/preprocess.py
-      md5: 3377608d41baaf5d37fa664a5e4cd944
-      size: 2204
-    - path: training_data/a1_RestaurantReviews_HistoricDump.tsv
+    - path: data/raw/a1_RestaurantReviews_HistoricDump.tsv
       md5: 102f1f4193e0bdebdd6cce7f13e0a839
       size: 55587
+    - path: src/features/build_features.py
+      md5: 1d83d5c78942300190130f7233307ed7
+      size: 2797
     outs:
-    - path: bow/bow_sentiment_model.pkl
-      md5: 1e2d849097337f543252a31ef8c4eef5
+    - path: output/bow/bow_sentiment_model.pkl
+      md5: 524775632b626cdd7601ee78f43aa5d4
       size: 34146
-    - path: splitData/x_test.pkl
+    - path: output/splitData/x_test.pkl
       md5: dff7bd7ca2acd9aeba2f2ee274f06979
       size: 2044962
-    - path: splitData/x_train.pkl
+    - path: output/splitData/x_train.pkl
       md5: 04a58e8d13748e243e817c0a2d10dd91
       size: 8179363
-    - path: splitData/y_test.pkl
+    - path: output/splitData/y_test.pkl
       md5: 09eabb64df4a6de7bab7b26426915b40
       size: 1590
-    - path: splitData/y_train.pkl
+    - path: output/splitData/y_train.pkl
       md5: 896e15d0f8257c856b3ed9efe1d10e72
       size: 5911
-  train:
-    cmd: python src/train.py
+  train_model:
+    cmd: python src/models/train_model.py
     deps:
-    - path: splitData/x_train.pkl
+    - path: output/splitData/x_train.pkl
       md5: 04a58e8d13748e243e817c0a2d10dd91
       size: 8179363
-    - path: splitData/y_train.pkl
+    - path: output/splitData/y_train.pkl
       md5: 896e15d0f8257c856b3ed9efe1d10e72
       size: 5911
-    - path: src/train.py
-      md5: b358bbc5012d02d74b70ea7c8710e69b
-      size: 645
+    - path: src/models/train_model.py
+      md5: 4dfb82e23420cbc8a484dd99d2a3fe03
+      size: 1292
     outs:
     - path: models/classifier_sentiment_model
-      md5: e98fa52e2f9b6f601fc411462ae6ad92
+      md5: 2d5a3a7cc92e92406be4edf52dd19be0
       size: 46215
-  test:
-    cmd: python src/test.py
+  predict_model:
+    cmd: python src/models/predict_model.py
     deps:
     - path: models/classifier_sentiment_model
-      md5: e98fa52e2f9b6f601fc411462ae6ad92
+      md5: 2d5a3a7cc92e92406be4edf52dd19be0
       size: 46215
-    - path: splitData/x_test.pkl
+    - path: output/splitData/x_test.pkl
       md5: dff7bd7ca2acd9aeba2f2ee274f06979
       size: 2044962
-    - path: splitData/y_test.pkl
+    - path: output/splitData/y_test.pkl
       md5: 09eabb64df4a6de7bab7b26426915b40
       size: 1590
-    - path: src/test.py
-      md5: 0fa95882cb95de76efb2c2b43b6ca8ea
-      size: 785
+    - path: src/models/predict_model.py
+      md5: 2e905b524bc3daa96c31c33a882e80e0
+      size: 1305
     outs:
-    - path: output/metrics.json
-      md5: 46d3be4b2ce7b07850aeac6a45d86aae
+    - path: output/res/metrics.json
+      md5: cd6f5fb4cb9281088914cac59ba8be5c
       size: 32
