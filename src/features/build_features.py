@@ -35,7 +35,7 @@ def preprocess_review(review):
     return review
 
 
-def preprocess_data(filename):
+def preprocess_data(filename, random_state=None):
     """
     Preprocesses data, applies bag of words model, and splits data for model training and testing.
 
@@ -61,29 +61,31 @@ def preprocess_data(filename):
         pickle.dump(count_vectorizer, file)
 
     x_train, x_test, y_train, y_test = train_test_split(
-        x_data, y_data, test_size=0.20, random_state=0
+        x_data, y_data, test_size=0.20, random_state=random_state
     )
 
-    with open("output/splitData/x_train.pkl", "wb") as file:
+    trail = '' if random_state is None else random_state
+
+    with open(f"output/splitData/x_train{'_'+str(trail)}.pkl", "wb") as file:
         pickle.dump(x_train, file)
-    with open("output/splitData/x_test.pkl", "wb") as file:
+    with open(f"output/splitData/x_test{'_'+str(trail)}.pkl", "wb") as file:
         pickle.dump(x_test, file)
-    with open("output/splitData/y_train.pkl", "wb") as file:
+    with open(f"output/splitData/y_train{'_'+str(trail)}.pkl", "wb") as file:
         pickle.dump(y_train, file)
-    with open("output/splitData/y_test.pkl", "wb") as file:
+    with open(f"output/splitData/y_test{'_'+str(trail)}.pkl", "wb") as file:
         pickle.dump(y_test, file)
 
     return x_train, x_test, y_train, y_test
 
 
-def test_preprocess(filename="a1_RestaurantReviews_HistoricDump.tsv"):
+def test_preprocess(filename="a1_RestaurantReviews_HistoricDump.tsv", random_state=None):
     """
     Function to test the preprocess_data function by invoking it.
 
     Args:
     filename (str): Filename of the raw data.
     """
-    preprocess_data(filename=filename)
+    preprocess_data(filename=filename, random_state=random_state)
 
 
 if __name__ == "__main__":
