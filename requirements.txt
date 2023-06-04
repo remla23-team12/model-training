@@ -1,12 +1,13 @@
-numpy==1.22.0
-pandas==1.0.1
-nltk==3.6.6
-scikit-learn==0.23.1
-joblib==1.2.0
-dvc
-mllint
+numpy==1.19.5
+pandas==1.1.5
+nltk==3.6.7
+scikit-learn==0.24.2
+joblib==1.1.1
+pytest==7.0.1
 pylint==2.12.2
-dslinter
+dslinter==1.1.0
+dvc==2.8.1
+mllint==0.12.2
 # local package
 -e .
 
