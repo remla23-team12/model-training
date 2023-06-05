@@ -6,11 +6,13 @@ import os
 import re
 import pickle
 import pandas as pd
+import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 
+nltk.download('stopwords')
 stopwords = stopwords.words("english")
 stopwords.remove("not")
 
