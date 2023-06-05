@@ -31,6 +31,7 @@ dvc exp run
 dvc metrics diff
 ```
 ## Pytest
+Our tests are in the test_simple.py file, which is in src/ -> tests/
 In /model-training path, run
 ```bash
 pytest
