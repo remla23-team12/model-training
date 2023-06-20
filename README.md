@@ -1,6 +1,6 @@
 # model-training
 
-Used Python version 3.8.2 was used along with the modules specified in the requirement.txt
+Used Python version 3.6.2 was used along with the modules specified in the requirement.txt
 
 # DVC Guide
 
@@ -9,47 +9,60 @@ Data Version Control (DVC) is an open-source version control system for Machine 
 ## Installation
 
 Before using DVC, you need to install it. You can do this using pip:
- 
+
 ```bash
 pip install dvc
 ```
+
 ## Reproducing Experiments
+
 DVC keeps track of machine learning experiments. You can reproduce any experiment using the following command:
+
 ```bash
 dvc repro
 ```
+
 ## Metrics
+
 You can view metrics difference between latest commit and after some changes using the following command:
+
 ```bash
 dvc exp run
 ```
+
 change something and git add -A, git commit -m "change something"
+
 ```bash
 dvc exp run
 ```
+
 ```bash
 dvc metrics diff
 ```
+
 ## Pytest
+
 For A5, a test for nondeterminism robustness was written in the test_simple.py file, which is in src/ -> tests/
 
-In /model-training path, run
 ```bash
 pytest
 ```
+
 ## Pylint
+
 All files have been well documented and reach full score using pylint, verify by :
+
 ```bash
 pylint --load-plugins=dslinter src/<dir>/<testFile>.py
 ```
+
 ## Cookiecutter info
-model-training
-==============================
 
-Relma Course 
+# model-training
 
-Project Organization
-------------
+Relma Course
+
+## Project Organization
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -83,7 +96,7 @@ Project Organization
     │   │
     │   ├── tests          <- Scripts to do a simple test
     │   │   └── test_simple.py
-    │   ├── data           <- Scripts to download or generate data (not able to download in this project)
+    │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
     │   │
     │   ├── features       <- Scripts to turn raw data into features and datasets for modeling
@@ -99,7 +112,6 @@ Project Organization
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
-
---------
+---
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>

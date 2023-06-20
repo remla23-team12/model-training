@@ -5,7 +5,7 @@ import urllib.request
 import zipfile
 
 
-# unfortunately, this does not work, winerror 10054
+
 def download_data():
     """
     Downloads and extracts the data from the URL.

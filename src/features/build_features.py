@@ -11,7 +11,6 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
-
 nltk.download('stopwords')
 stopwords = stopwords.words("english")
 stopwords.remove("not")
@@ -52,7 +51,10 @@ def preprocess_data(filename, random_state=None):
         print(f"{filename} does not exist")
         return None
 
-    dataset = pd.read_csv(filepath, delimiter="\t", quoting=3)
+    dataset = pd.read_csv(filepath, delimiter="\t", quoting=3,
+                        usecols=['Review', 'Liked'], dtype={'Review': str, 'Liked': int})
+    dataset = dataset[['Review', 'Liked']]
+
     dataset["Review"] = dataset["Review"].apply(preprocess_review)
     count_vectorizer = CountVectorizer(max_features=1420)
     x_data = count_vectorizer.fit_transform(dataset["Review"].tolist()).toarray()
@@ -66,15 +68,13 @@ def preprocess_data(filename, random_state=None):
         x_data, y_data, test_size=0.20, random_state=random_state
     )
 
-    trail = '' if random_state is None else random_state
-
-    with open(f"output/splitData/x_train{'_'+str(trail)}.pkl", "wb") as file:
+    with open("output/splitData/x_train.pkl", "wb") as file:
         pickle.dump(x_train, file)
-    with open(f"output/splitData/x_test{'_'+str(trail)}.pkl", "wb") as file:
+    with open("output/splitData/x_test.pkl", "wb") as file:
         pickle.dump(x_test, file)
-    with open(f"output/splitData/y_train{'_'+str(trail)}.pkl", "wb") as file:
+    with open("output/splitData/y_train.pkl", "wb") as file:
         pickle.dump(y_train, file)
-    with open(f"output/splitData/y_test{'_'+str(trail)}.pkl", "wb") as file:
+    with open("output/splitData/y_test.pkl", "wb") as file:
         pickle.dump(y_test, file)
 
     return x_train, x_test, y_train, y_test

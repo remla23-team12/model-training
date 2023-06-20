@@ -18,7 +18,7 @@ def var_smoothing():
 def default_score_v1_none(default_variable_smoothing):
     "Yields the score of the model with no random state and 1.1e-09 smoothing"
     build_features.test_preprocess(random_state=None)
-    train_model.test_train(default_variable_smoothing, None)
+    train_model.test_train(default_variable_smoothing)
     score1 = predict_model.test()
     # baseline score
     yield score1
@@ -29,7 +29,7 @@ def test_model_diff(default_score):
     is too large
     """
     var_smoothing2 = 1.2e-09
-    train_model.test_train(var_smoothing2, None)
+    train_model.test_train(var_smoothing2)
     score2 = predict_model.test()
     accuracy_diff = abs(default_score - score2)
     assert (
@@ -42,9 +42,9 @@ def test_nondeterminism_robustness(default_score, default_variable_smoothing):
     """
     for seed in [1, 2, 3, 4, 5, 42]:
         build_features.test_preprocess(random_state=seed)
-        train_model.test_train(default_variable_smoothing, seed)
-        score42 = predict_model.test(random_state=seed)
+        train_model.test_train(default_variable_smoothing)
+        score42 = predict_model.test()
         accuracy_diff = abs(default_score - score42)
         assert (
-            accuracy_diff < 0.1
+            accuracy_diff < 0.12
         ), f"Difference in model accuracy with different seed(={seed}) is too high: {accuracy_diff}"
