@@ -9,6 +9,7 @@ dslinter==1.1.0
 dvc==2.8.1
 mllint==0.12.2
 pytest
+fsspec==2022.7.1
 # local package
 -e .
 
