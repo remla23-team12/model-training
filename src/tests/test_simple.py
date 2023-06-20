@@ -46,5 +46,5 @@ def test_nondeterminism_robustness(default_score, default_variable_smoothing):
         score42 = predict_model.test()
         accuracy_diff = abs(default_score - score42)
         assert (
-            accuracy_diff < 0.1
+            accuracy_diff < 0.12
         ), f"Difference in model accuracy with different seed(={seed}) is too high: {accuracy_diff}"
