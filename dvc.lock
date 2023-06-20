@@ -45,8 +45,8 @@ stages:
       size: 5911
     - path: src/models/train_model.py
       hash: md5
-      md5: b21274507d6913f4733c5c8adb8b5cf6
-      size: 1419
+      md5: b90610581b42b34d3999fee13dee7ddb
+      size: 1417
     outs:
     - path: models/classifier_sentiment_model
       hash: md5

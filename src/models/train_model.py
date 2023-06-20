@@ -6,7 +6,7 @@ from sklearn.naive_bayes import GaussianNB
 import joblib
 
 
-def train(var_smoothing=1e-09, random_state=100):
+def train(var_smoothing=1e-09, random_state=30):
     """
     Train a Gaussian Naive Bayes model on training data.
 
