@@ -9,63 +9,63 @@ stages:
       size: 55587
     - path: src/features/build_features.py
       hash: md5
-      md5: 8818a6376a13b37dbf241199b2826e0f
-      size: 2976
+      md5: 7ecc87626a515b8ba7833d489d8f1dc0
+      size: 2974
     outs:
     - path: output/bow/bow_sentiment_model.pkl
       hash: md5
-      md5: b0297f4d418f1f0bc96882cf305cd623
+      md5: 61932b7a099ee1ed61df4a074bcd05ea
       size: 16778
     - path: output/splitData/x_test.pkl
       hash: md5
-      md5: b19c31c11499ad09a3f9dc0bd3180bb9
+      md5: ebc2727d129de964f00dcd0047a752e4
       size: 2044962
     - path: output/splitData/x_train.pkl
       hash: md5
-      md5: 13400e9a691f0a05ad1e1c26503ea96f
+      md5: 039737eac51741da8aa6c086207193b6
       size: 8179363
     - path: output/splitData/y_test.pkl
       hash: md5
-      md5: c167f5d4ad67273c36e298df44294b59
+      md5: df72acd0792162e46a07b772edcc400e
       size: 1590
     - path: output/splitData/y_train.pkl
       hash: md5
-      md5: 6f9de68a2b2f73af5c7a31adbe3755c5
+      md5: 5dc000dfcab74423f86cc2027ccd396e
       size: 5911
   train_model:
     cmd: python src/models/train_model.py
     deps:
     - path: output/splitData/x_train.pkl
       hash: md5
-      md5: 13400e9a691f0a05ad1e1c26503ea96f
+      md5: 039737eac51741da8aa6c086207193b6
       size: 8179363
     - path: output/splitData/y_train.pkl
       hash: md5
-      md5: 6f9de68a2b2f73af5c7a31adbe3755c5
+      md5: 5dc000dfcab74423f86cc2027ccd396e
       size: 5911
     - path: src/models/train_model.py
       hash: md5
-      md5: b90610581b42b34d3999fee13dee7ddb
+      md5: 38e613a0169fa1f238ba145c6ebc5ba2
       size: 1417
     outs:
     - path: models/classifier_sentiment_model
       hash: md5
-      md5: 21141d574b0d8ba8765a5c7f0d5fc477
+      md5: 39c64c64f9562c333234cf0b63adec1d
       size: 46216
   predict_model:
     cmd: python src/models/predict_model.py
     deps:
     - path: models/classifier_sentiment_model
       hash: md5
-      md5: 21141d574b0d8ba8765a5c7f0d5fc477
+      md5: 39c64c64f9562c333234cf0b63adec1d
       size: 46216
     - path: output/splitData/x_test.pkl
       hash: md5
-      md5: b19c31c11499ad09a3f9dc0bd3180bb9
+      md5: ebc2727d129de964f00dcd0047a752e4
       size: 2044962
     - path: output/splitData/y_test.pkl
       hash: md5
-      md5: c167f5d4ad67273c36e298df44294b59
+      md5: df72acd0792162e46a07b772edcc400e
       size: 1590
     - path: src/models/predict_model.py
       hash: md5
@@ -74,8 +74,8 @@ stages:
     outs:
     - path: output/res/metrics.json
       hash: md5
-      md5: 96f14eb2fa44e8934c1c35144c9472ef
-      size: 18
+      md5: 28127b74963c2dc4588eb9309fc81440
+      size: 32
   make_dataset:
     cmd: python src/data/make_dataset.py
     deps:

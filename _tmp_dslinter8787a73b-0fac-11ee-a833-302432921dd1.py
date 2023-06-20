@@ -19,14 +19,14 @@ def train(var_smoothing=1e-09):
     """
     # model-training before the path if running directly, the current path is for dvc
     with open("output/splitData/x_train.pkl", "rb") as file:
-        x_train = pickle.load(file)
+        x_train = pickle.load(file); reveal_type(pickle)
     with open("output/splitData/y_train.pkl", "rb") as file:
-        y_train = pickle.load(file)
+        y_train = pickle.load(file); reveal_type(pickle)
 
     classifier = GaussianNB(var_smoothing=var_smoothing)
-    classifier.fit(x_train, y_train)
+    classifier.fit(x_train, y_train); reveal_type(classifier)
 
-    joblib.dump(classifier, "models/classifier_sentiment_model")
+    joblib.dump(classifier, "models/classifier_sentiment_model"); reveal_type(joblib)
     return classifier
 
 
