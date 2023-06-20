@@ -18,9 +18,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: DVC run
-        run: |
-          dvc repro
+      # - name: DVC run
+      #   run: |
+      #     dvc repro
       - name: Run pytest
         run: |
           pytest
