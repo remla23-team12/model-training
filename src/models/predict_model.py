@@ -28,12 +28,12 @@ def test(random_state=None):
     """
     # model-training before the path if running directly, the current path is for dvc
     trail = '' if random_state is None else random_state
-    with open(f"output/splitData/x_test{'_'+str(trail)}.pkl", "rb") as file:
+    with open(f"output/splitData/x_test.pkl", "rb") as file:
         x_test = pickle.load(file)
-    with open(f"output/splitData/y_test{'_'+str(trail)}.pkl", "rb") as file:
+    with open(f"output/splitData/y_test.pkl", "rb") as file:
         y_test = pickle.load(file)
 
-    classifier = joblib.load(f"models/classifier_sentiment_model{'_'+str(trail)}")
+    classifier = joblib.load(f"models/classifier_sentiment_model")
     y_pred = classifier.predict(x_test)
 
     # Save accuracy to a JSON file

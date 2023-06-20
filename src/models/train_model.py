@@ -19,15 +19,15 @@ def train(var_smoothing=1e-09, random_state=None):
     """
     trail = '' if random_state is None else random_state
     # model-training before the path if running directly, the current path is for dvc
-    with open(f"output/splitData/x_train{'_'+str(trail)}.pkl", "rb") as file:
+    with open(f"output/splitData/x_train.pkl", "rb") as file:
         x_train = pickle.load(file)
-    with open(f"output/splitData/y_train{'_'+str(trail)}.pkl", "rb") as file:
+    with open(f"output/splitData/y_train.pkl", "rb") as file:
         y_train = pickle.load(file)
 
     classifier = GaussianNB(var_smoothing=var_smoothing)
     classifier.fit(x_train, y_train)
 
-    joblib.dump(classifier, f"models/classifier_sentiment_model{'_'+str(trail)}")
+    joblib.dump(classifier, f"models/classifier_sentiment_model")
     return classifier
 
 

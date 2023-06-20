@@ -1,29 +1,35 @@
 stages:
+  make_dataset:
+    cmd: python src/data/make_dataset.py
+    deps:
+      - src/data/make_dataset.py
+    outs:
+      - data/raw/a1_RestaurantReviews_HistoricDump.tsv
   preprocess:
     cmd: python src/features/build_features.py
     deps:
-    - data/raw/a1_RestaurantReviews_HistoricDump.tsv
-    - src/features/build_features.py
+      - data/raw/a1_RestaurantReviews_HistoricDump.tsv
+      - src/features/build_features.py
     outs:
-    - output/bow/bow_sentiment_model.pkl
-    - output/splitData/x_test.pkl
-    - output/splitData/x_train.pkl
-    - output/splitData/y_test.pkl
-    - output/splitData/y_train.pkl
+      - output/bow/bow_sentiment_model.pkl
+      - output/splitData/x_test.pkl
+      - output/splitData/x_train.pkl
+      - output/splitData/y_test.pkl
+      - output/splitData/y_train.pkl
   train_model:
     cmd: python src/models/train_model.py
     deps:
-    - output/splitData/x_train.pkl
-    - output/splitData/y_train.pkl
-    - src/models/train_model.py
+      - output/splitData/x_train.pkl
+      - output/splitData/y_train.pkl
+      - src/models/train_model.py
     outs:
-    - models/classifier_sentiment_model
+      - models/classifier_sentiment_model
   predict_model:
     cmd: python src/models/predict_model.py
     deps:
-    - models/classifier_sentiment_model
-    - output/splitData/x_test.pkl
-    - output/splitData/y_test.pkl
-    - src/models/predict_model.py
+      - models/classifier_sentiment_model
+      - output/splitData/x_test.pkl
+      - output/splitData/y_test.pkl
+      - src/models/predict_model.py
     metrics:
-    - output/res/metrics.json
+      - output/res/metrics.json

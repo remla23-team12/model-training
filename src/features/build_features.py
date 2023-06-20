@@ -6,11 +6,12 @@ import os
 import re
 import pickle
 import pandas as pd
+import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
-
+nltk.download('stopwords')
 stopwords = stopwords.words("english")
 stopwords.remove("not")
 
@@ -66,13 +67,13 @@ def preprocess_data(filename, random_state=None):
 
     trail = '' if random_state is None else random_state
 
-    with open(f"output/splitData/x_train{'_'+str(trail)}.pkl", "wb") as file:
+    with open(f"output/splitData/x_train.pkl", "wb") as file:
         pickle.dump(x_train, file)
-    with open(f"output/splitData/x_test{'_'+str(trail)}.pkl", "wb") as file:
+    with open(f"output/splitData/x_test.pkl", "wb") as file:
         pickle.dump(x_test, file)
-    with open(f"output/splitData/y_train{'_'+str(trail)}.pkl", "wb") as file:
+    with open(f"output/splitData/y_train.pkl", "wb") as file:
         pickle.dump(y_train, file)
-    with open(f"output/splitData/y_test{'_'+str(trail)}.pkl", "wb") as file:
+    with open(f"output/splitData/y_test.pkl", "wb") as file:
         pickle.dump(y_test, file)
 
     return x_train, x_test, y_train, y_test
