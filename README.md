@@ -42,7 +42,7 @@ dvc metrics diff
 
 ## Pytest
 
-In /model-training path, run
+For A5, a test for nondeterminism robustness was written in the test_simple.py file, which is in src/ -> tests/
 
 ```bash
 pytest
