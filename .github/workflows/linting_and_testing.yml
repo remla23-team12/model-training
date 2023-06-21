@@ -30,3 +30,6 @@ jobs:
       - name: Analysing the code with DS Lint
         run: |
           pylint --load-plugins=dslinter ./src
+      - name: Analysing the code with mllint
+        run: |
+          mllint run
