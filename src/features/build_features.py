@@ -36,7 +36,7 @@ def preprocess_review(review):
     return review
 
 
-def preprocess_data(filename, random_state=None):
+def preprocess_data(filename, random_state=41):
     """
     Preprocesses data, applies bag of words model, and splits data for model training and testing.
 

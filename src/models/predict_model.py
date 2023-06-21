@@ -3,7 +3,7 @@ This module tests a trained Naive Bayes model on some preprocessed data.
 """
 import pickle
 import json
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 import joblib
 
 
@@ -39,6 +39,11 @@ def test():
     save_metrics(
         {"accuracy": accuracy_score(y_test, y_pred)},
         "output/res/metrics.json",
+    )
+    # Save the second metic to a JSON file
+    save_metrics(
+        {"f1": f1_score(y_test, y_pred)},
+        "output/res/f1metrics.json",
     )
     return accuracy_score(y_test, y_pred)
 

@@ -33,3 +33,4 @@ stages:
       - src/models/predict_model.py
     metrics:
       - output/res/metrics.json
+      - output/res/f1metrics.json

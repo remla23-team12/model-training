@@ -81,9 +81,13 @@ stages:
       size: 870
     - path: src/models/predict_model.py
       hash: md5
-      md5: 54dfc416fa0160cf5f25a7be31ed9119
-      size: 1305
+      md5: 7cfc67029d8a6b760197d22ba256dabb
+      size: 1466
     outs:
+    - path: output/res/f1metrics.json
+      hash: md5
+      md5: a41b7ce279a9221d3b20264b544b13eb
+      size: 25
     - path: output/res/metrics.json
       hash: md5
       md5: f2c98892ba4e9bf00e3c524fb8d5a325
