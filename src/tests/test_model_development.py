@@ -1,10 +1,39 @@
 """
-This module do a simple test on the model.
+This module tests model development.
 """
+import joblib
+import pickle
 import pytest
 from ..models import train_model
 from ..models import predict_model
 from ..features import build_features
+
+
+@pytest.fixture(name="model")
+def load_model():
+    """
+    Load the trained model.
+    """
+    classifier = joblib.load("models/classifier_sentiment_model")
+    return classifier
+
+@pytest.fixture(name="dataset")
+def load_dataset():
+    """
+    Load the dataset.
+    """
+    with open("output/splitData/x_data.pkl", "rb") as file:
+        x_train = pickle.load(file)
+    return x_train
+
+@pytest.fixture(name="groundtruth")
+def load_groundTruth():
+    """
+    Load the ground truth data, consists of 0 or 1s.
+    """
+    with open("output/splitData/y_data.pkl", "rb") as file:
+        y_train = pickle.load(file)
+    return y_train
 
 @pytest.fixture(name="default_variable_smoothing")
 def var_smoothing():
@@ -48,3 +77,23 @@ def test_nondeterminism_robustness(default_score, default_variable_smoothing):
         assert (
             accuracy_diff < 0.12
         ), f"Difference in model accuracy with different seed(={seed}) is too high: {accuracy_diff}"
+
+def test_positive_negative_data_slices(model, dataset, groundtruth):
+    """
+    Test model development: testing the model using data slices.
+    The 2 data slices are: 
+    - positive data slice (i.e. groundtruth is 1)
+    - negative data slice (i.e. groundtruth is 0)
+    """
+    positive_slice = [dataset[i] for i in range(len(groundtruth)) if groundtruth[i]]
+    negative_slice = [dataset[i] for i in range(len(groundtruth)) if not groundtruth[i]]
+
+    positive_score = sum(model.predict(positive_slice) == 1) / len(positive_slice)
+    negative_score = sum(model.predict(negative_slice) == 0) / len(negative_slice)
+    accuracy_diff = abs(positive_score - negative_score)
+
+    assert (
+        accuracy_diff < 0.15
+    ), f"Difference in model accuracy with positive and negative slicesis too high: {accuracy_diff}"
+
+

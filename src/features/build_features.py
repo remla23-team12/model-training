@@ -68,6 +68,10 @@ def preprocess_data(filename, random_state=None):
         x_data, y_data, test_size=0.20, random_state=random_state
     )
 
+    with open("output/splitData/x_data.pkl", "wb") as file:
+        pickle.dump(x_data, file)
+    with open("output/splitData/y_data.pkl", "wb") as file:
+        pickle.dump(y_data, file)
     with open("output/splitData/x_train.pkl", "wb") as file:
         pickle.dump(x_train, file)
     with open("output/splitData/x_test.pkl", "wb") as file:
