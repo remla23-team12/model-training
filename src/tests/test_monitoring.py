@@ -16,3 +16,4 @@ def test_ram_used_for_training():
     assert(
         ram_usage < 1000000000 # less than 1 GB
     ), f"Training the model exceeds the allowed RAM usage by {ram_usage} bytes"
+    

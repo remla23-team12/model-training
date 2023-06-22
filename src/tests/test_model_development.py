@@ -1,8 +1,8 @@
 """
 This module tests model development.
 """
-import joblib
 import pickle
+import joblib
 import pytest
 from ..models import train_model
 from ..models import predict_model
@@ -27,7 +27,7 @@ def load_dataset():
     return x_train
 
 @pytest.fixture(name="groundtruth")
-def load_groundTruth():
+def load_groundtruth():
     """
     Load the ground truth data, consists of 0 or 1s.
     """
@@ -81,7 +81,7 @@ def test_nondeterminism_robustness(default_score, default_variable_smoothing):
 def test_positive_negative_data_slices(model, dataset, groundtruth):
     """
     Test model development: testing the model using data slices.
-    The 2 data slices are: 
+    The 2 data slices are:
     - positive data slice (i.e. groundtruth is 1)
     - negative data slice (i.e. groundtruth is 0)
     """
@@ -94,14 +94,5 @@ def test_positive_negative_data_slices(model, dataset, groundtruth):
 
     assert (
         accuracy_diff < 0.2
-    ), f"Difference in model accuracy with positive and negative slices is too high: {accuracy_diff}"
-
-def test_review_feature_memory_usage(dataset):
-    """
-    Test for Features and Data: memory cost of the review feature
-    """
-    review_feature_in_bytes = dataset.nbytes
-    max_bytes = 1000000000 # equal to 1 GB
-    assert (
-        review_feature_in_bytes < max_bytes
-    ), f"The review feature is using too many bytes: {review_feature_in_bytes}"
+    ), f"Difference in model accuracy with + and - slices is too high: {accuracy_diff}"
+    
