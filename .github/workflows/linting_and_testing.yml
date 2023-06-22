@@ -31,6 +31,7 @@ jobs:
           path: pytest-results.xml
       - name: Check coverage percentage
         run: |
+          coverage run -m pytest
           coverage report --fail-under=80 
           coverage html 
         if: ${{ always() }}

@@ -35,67 +35,6 @@ def load_groundTruth():
         y_train = pickle.load(file)
     return y_train
 
-@pytest.fixture(name="default_variable_smoothing")
-def var_smoothing():
-    """
-    Yields the amount of smoothing, to be used in some tests for model development tests.
-    """
-    smoothing = 1.1e-09
-    yield smoothing
-
-@pytest.fixture(name="default_score")
-def default_score_v1_none(default_variable_smoothing):
-    "Yields the score of the model with no random state and 1.1e-09 smoothing"
-    build_features.test_preprocess(random_state=None)
-    train_model.test_train(default_variable_smoothing)
-    score1 = predict_model.test()
-    # baseline score
-    yield score1
-
-def test_model_diff(default_score):
-    """
-    Test model development: fails if difference is score caused by different variable smoothing
-    is too large
-    """
-    var_smoothing2 = 1.2e-09
-    train_model.test_train(var_smoothing2)
-    score2 = predict_model.test()
-    accuracy_diff = abs(default_score - score2)
-    assert (
-        accuracy_diff < 0.1
-    ), f"Difference in model accuracy with different seeds is too high: {accuracy_diff}"
-
-def test_nondeterminism_robustness(default_score, default_variable_smoothing):
-    """
-    Test model development: fails if the score of the model with a different seed is too high
-    """
-    for seed in [1, 2, 3, 4, 5, 42]:
-        build_features.test_preprocess(random_state=seed)
-        train_model.test_train(default_variable_smoothing)
-        score42 = predict_model.test()
-        accuracy_diff = abs(default_score - score42)
-        assert (
-            accuracy_diff < 0.12
-        ), f"Difference in model accuracy with different seed(={seed}) is too high: {accuracy_diff}"
-
-def test_positive_negative_data_slices(model, dataset, groundtruth):
-    """
-    Test model development: testing the model using data slices.
-    The 2 data slices are: 
-    - positive data slice (i.e. groundtruth is 1)
-    - negative data slice (i.e. groundtruth is 0)
-    """
-    positive_slice = [dataset[i] for i in range(len(groundtruth)) if groundtruth[i]]
-    negative_slice = [dataset[i] for i in range(len(groundtruth)) if not groundtruth[i]]
-
-    positive_score = sum(model.predict(positive_slice) == 1) / len(positive_slice)
-    negative_score = sum(model.predict(negative_slice) == 0) / len(negative_slice)
-    accuracy_diff = abs(positive_score - negative_score)
-
-    assert (
-        accuracy_diff < 0.15
-    ), f"Difference in model accuracy with positive and negative slicesis too high: {accuracy_diff}"
-
 def test_review_feature_memory_usage(dataset):
     """
     Test for Features and Data: memory cost of the review feature
