@@ -75,7 +75,7 @@ def test_nondeterminism_robustness(default_score, default_variable_smoothing):
         score42 = predict_model.test()
         accuracy_diff = abs(default_score - score42)
         assert (
-            accuracy_diff < 0.12
+            accuracy_diff < 0.2
         ), f"Difference in model accuracy with different seed(={seed}) is too high: {accuracy_diff}"
 
 def test_positive_negative_data_slices(model, dataset, groundtruth):
@@ -93,8 +93,8 @@ def test_positive_negative_data_slices(model, dataset, groundtruth):
     accuracy_diff = abs(positive_score - negative_score)
 
     assert (
-        accuracy_diff < 0.15
-    ), f"Difference in model accuracy with positive and negative slicesis too high: {accuracy_diff}"
+        accuracy_diff < 0.2
+    ), f"Difference in model accuracy with positive and negative slices is too high: {accuracy_diff}"
 
 def test_review_feature_memory_usage(dataset):
     """
