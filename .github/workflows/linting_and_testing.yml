@@ -31,7 +31,8 @@ jobs:
           path: pytest-results.xml
       - name: Check coverage percentage
         run: |
-          coverage html --fail-under=80
+          coverage report --fail-under=80 
+          coverage html 
         if: ${{ always() }}
       - name: Upload coverage report
         uses: actions/upload-artifact@v3
