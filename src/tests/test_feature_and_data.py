@@ -1,19 +1,19 @@
 """
-This module tests the features and data.
+This module tests model development.
 """
 import pickle
 import pytest
 
-@pytest.fixture(name="dataset")
-def load_dataset():
-    """
-    Load the dataset.
-    """
-    with open("output/splitData/x_data.pkl", "rb") as file:
-        x_train = pickle.load(file)
-    return x_train
+# @pytest.fixture(name="dataset")
+# def load_dataset():
+#     """
+#     Load the dataset.
+#     """
+#     with open("output/splitData/x_data.pkl", "rb") as file:
+#         x_train = pickle.load(file)
+#     return x_train
 
-def test_review_feature_memory_usage(dataset):
+def test_review_feature_memory_usage(): #dataset
     """
     Test for Features and Data: memory cost of the review feature
     """
