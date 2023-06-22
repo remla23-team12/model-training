@@ -1,6 +1,6 @@
 name: Pylint
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -23,10 +23,22 @@ jobs:
       #     dvc repro
       - name: Run pytest
         run: |
-          pytest
-      # - name: Analysing the code with pylint
-      #   run: |
-      #     pylint ./src
+          pytest --junitxml=pytest-results.xml -cov=src
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: pytest-results
+          path: pytest-results.xml
+      - name: Check coverage percentage
+        run: |
+          coverage html --fail-under=80
+        if: ${{ always() }}
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: htmlcov/
+        if: ${{ always() }}
       - name: Analysing the code with DS Lint
         run: |
           pylint --load-plugins=dslinter ./src
