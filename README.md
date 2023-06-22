@@ -1,6 +1,6 @@
 # model-training
 
-Used Python version 3.6.2 was used along with the modules specified in the requirement.txt
+Used Python version 3.9.2 was used along with the modules specified in the requirement.txt
 
 # DVC Guide
 
@@ -42,10 +42,9 @@ dvc metrics diff
 
 ## Pytest
 
-For A5, a test for nondeterminism robustness was written in the test_simple.py file, which is in src/ -> tests/
-
+A single command can be executed in the terminal to run all the tests:
 ```bash
-pytest
+pytest --junitxml=pytest-results.xml -cov=src 
 ```
 
 ## Pylint
