@@ -14,7 +14,10 @@ Before using DVC, you need to install it. You can do this using pip:
 pip install dvc
 ```
 
-
+or just run the following command in the terminal when in the model-training directory, we recommend using a python virtual environment first with python 3.9 (you might need to upgrade pip first):
+```bash
+pip install -r requirements.txt
+```
 
 ## Reproducing Experiments
 
