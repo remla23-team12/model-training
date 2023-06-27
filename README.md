@@ -14,6 +14,8 @@ Before using DVC, you need to install it. You can do this using pip:
 pip install dvc
 ```
 
+
+
 ## Reproducing Experiments
 
 DVC keeps track of machine learning experiments. You can reproduce any experiment using the following command:
@@ -38,6 +40,11 @@ dvc exp run
 
 ```bash
 dvc metrics diff
+```
+
+To push arifacts/files to remote storage
+```bash
+dvs push
 ```
 
 ## Pytest
