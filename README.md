@@ -8,13 +8,15 @@ Data Version Control (DVC) is an open-source version control system for Machine 
 
 ## Installation
 
-Before using DVC, you need to install it. You can do this using pip:
+Before using DVC, you will need to install it. You can do this using pip:
 
 ```bash
 pip install dvc
 ```
 
-or just run the following command in the terminal when in the model-training directory, we recommend using a python virtual environment first with python 3.9 (you might need to upgrade pip first):
+However, you can also just run the following command in the terminal when in the model-training directory (we recommend using a python virtual environment first with python 3.9 (you might need to upgrade pip first)):
+
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -35,7 +37,7 @@ You can view metrics difference between latest commit and after some changes usi
 dvc exp run
 ```
 
-change something and git add -A, git commit -m "change something"
+Make a change and execute git add -A, git commit -m "change something"
 
 ```bash
 dvc exp run
@@ -45,9 +47,9 @@ dvc exp run
 dvc metrics diff
 ```
 
-To push arifacts/files to remote storage
+To push artifacts/files to remote storage
 ```bash
-dvs push
+dvc push
 ```
 
 ## Pytest
@@ -59,7 +61,7 @@ pytest --junitxml=pytest-results.xml -cov=src
 
 ## Pylint
 
-All files have been well documented and reach full score using pylint, verify by :
+All files have been well documented and reach full score using pylint, verify this by executing the following command:
 
 ```bash
 pylint --load-plugins=dslinter src/<dir>/<testFile>.py
@@ -69,7 +71,7 @@ pylint --load-plugins=dslinter src/<dir>/<testFile>.py
 
 # model-training
 
-Relma Course
+REMLA Course
 
 ## Project Organization
 
