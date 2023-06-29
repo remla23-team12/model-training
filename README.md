@@ -3,6 +3,12 @@
 Used Python version 3.9.2 was used along with the modules specified in the requirement.txt
 
 # DVC Guide
+```diff
+Note: If you got the `model-training` folder via BrightSpace, there won't be a .git folder (as per submission instructions). Due to the absence of of this .git folder, the execution of the dvc commands below will fail. The pytest command specified below will also fail, because you need to first run `dvc repro` to retrieve the datasets. Without it the tests cannot be run. If you want to follow the instructions below you must first clone our model-training repo, then the cloned folder will contain a .git folder, which allows the commands below to succeed when executed in the terminal.
+```
+---
+---
+
 
 Data Version Control (DVC) is an open-source version control system for Machine Learning projects. This guide provides instructions on how to use DVC for running and reproducing experiments.
 
@@ -53,7 +59,9 @@ dvc push
 ```
 
 ## Pytest
-
+```diff
+Note!: You must execute the `dvc repro` command in your terminal first BEFORE running the command below, or else the command below will fail because the tests rely on the dataset retrieved from a remote place using the `dvc repro` command
+```
 A single command can be executed in the terminal to run all the tests:
 ```bash
 pytest --junitxml=pytest-results.xml -cov=src 
